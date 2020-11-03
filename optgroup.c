@@ -174,6 +174,10 @@ static const struct opt_group fio_opt_cat_groups[] = {
 		.mask	= FIO_OPT_G_NBD,
 	},
 	{
+		.name	= "cufile I/O engine", /* cufile */
+		.mask	= FIO_OPT_G_CUFILE,
+	},
+	{
 		.name	= NULL,
 	},
 };

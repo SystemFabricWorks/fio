@@ -108,6 +108,9 @@ endif
 ifdef CONFIG_LINUX_EXT4_MOVE_EXTENT
   SOURCE += engines/e4defrag.c
 endif
+ifdef CONFIG_CUFILE
+  SOURCE += engines/cufile.c
+endif
 ifdef CONFIG_LINUX_SPLICE
   SOURCE += engines/splice.c
 endif
