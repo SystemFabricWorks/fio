@@ -336,14 +336,14 @@ static enum fio_q_status fio_libcufile_queue(struct thread_data *td,
 		assert(gpu_offset + io_u->xfer_buflen <= o->total_mem);
 
 		if (o->cuda_io == IO_CUFILE) {
-			if (!(ALIGNED_4KB(io_u->xfer_buflen) ||
-			      (o->logged & LOGGED_BUFLEN_NOT_ALIGNED))) {
+			if (!ALIGNED_4KB(io_u->xfer_buflen) &&
+			      (o->logged & LOGGED_BUFLEN_NOT_ALIGNED) == 0) {
 				log_err("buflen not 4KB-aligned: %llu\n", io_u->xfer_buflen);
 				o->logged |= LOGGED_BUFLEN_NOT_ALIGNED;
 			}
 
-			if (!(ALIGNED_4KB(gpu_offset) ||
-			      (o->logged & LOGGED_GPU_OFFSET_NOT_ALIGNED))) {
+			if (!ALIGNED_4KB(gpu_offset) &&
+			      (o->logged & LOGGED_GPU_OFFSET_NOT_ALIGNED) == 0) {
 				log_err("gpu_offset not 4KB-aligned: %lu\n", gpu_offset);
 				o->logged |= LOGGED_GPU_OFFSET_NOT_ALIGNED;
 			}
